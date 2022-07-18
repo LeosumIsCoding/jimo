@@ -7,7 +7,7 @@ import Vue from 'vue'
 Vue.use(Router)
 
 import Home from "../components/Home.vue"
-import Person from "../components/Person.vue"
+import Person from "../components/Person/Person.vue"
 
  export default new Router({
     // history:createWebHistroy(),
