@@ -1,8 +1,10 @@
 <template>
-  <div id="app">
+  <div @resize="sizeChange" id="app">
     <HeaderBar/>
 
-    <router-view />
+    <div id="main">
+      <router-view />
+    </div>
   </div>
 </template>
 
@@ -14,41 +16,48 @@ export default {
   components: { HeaderBar
   },
   beforeCreate(){
-    this.$router.push("/home");
+    // this.$router.push("/login");
+    
+  },
+  methods:{
+    sizeChange(e){
+      console.log(e);
+    }
   }
 }
 </script>
 
 <style>
 body{
-  /* background-color: #756767; */
+  margin: 0;
+  background-color: rgb(55, 55, 55);
+  color: aliceblue;
+  padding: 0;
   height: 100%;
-
-  margin: 0px;
+}
+#main{
+  padding-top: 60px;
+}
+#app{
+  margin-left: 50%;
+  transform: translateX(-50%);
   
+  position: relative;
+  /* background-color: aqua; */
 
-
-
-
-
-  
 }
 
-#app {
+@media screen and (min-width:1080px) {
+  #app{
+    width: 1100px;
+    /* background-color: aqua; */
+  }
+}
 
-  position: relative;
-
-  width: 100%;
-  /* width: 1100px; */
-  height: 100%;
-  /* background-color: rgb(46, 63, 78); */
-
-  
-  
-
-  /* width: 100px; */
-
-  /* background-color: #2c3e50; */
-
+@media screen and (max-width:1080px) {
+  #app{
+    width: 100%;
+    /* background-color: aquamarine; */
+  }
 }
 </style>

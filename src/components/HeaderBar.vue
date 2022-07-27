@@ -24,11 +24,10 @@ export default {
 
 <style>
 #big-headerbar{
-    height: 60px;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: beige;
+  position: fixed;
+  display: flex;
+  top: 0px;
+  justify-content: space-between;
+  width: 100%;
 }
 </style>

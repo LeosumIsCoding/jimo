@@ -9,9 +9,12 @@ import VueRouter from 'vue-router'
 
 Vue.use(VueRouter)
 
+axios.defaults.baseURL = "http://localhost:4536";
 
 Vue.http = Vue.prototype.$http = axios
 Vue.config.productionTip = false
+
+
 
 new Vue({
   components: { App },

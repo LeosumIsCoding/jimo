@@ -1,7 +1,7 @@
 <template>
   <div id="home">
 
-    home
+123
   </div>
 </template>
 
@@ -9,21 +9,20 @@
 
 export default {
     name:"Home",
-    components:{}
+    components:{},
+
+
+    beforeMount(){
+      console.log(this.$route);
+    }
     
 }
 </script>
 
 <style>
 #home{
-    position: relative;
-    height: 100%;
-    width: 100%;
-    /* background-color: antiquewhite; */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+  /* padding-top: 60px; */
+/* height: 100px; */
 
 }
 </style>
