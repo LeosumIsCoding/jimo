@@ -1,5 +1,5 @@
 <template>
-  <div @resize="sizeChange" id="app">
+  <div  id="app">
     <HeaderBar/>
 
     <div id="main">
@@ -11,19 +11,22 @@
 <script>
 // import Home from "./components/Home.vue"
 import HeaderBar from "./components/HeaderBar.vue"
+
 export default {
   name: 'App',
   components: { HeaderBar
   },
   beforeCreate(){
-    // this.$router.push("/login");
+
     
   },
+  mounted(){
+
+  },
   methods:{
-    sizeChange(e){
-      console.log(e);
-    }
-  }
+
+  },
+
 }
 </script>
 

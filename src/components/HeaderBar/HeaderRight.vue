@@ -1,7 +1,7 @@
 <template>
   <div id="headerbar-upload">
     
-      <HeaderHeadimg v-if="isLogin" :headimg="userInfo.headimg" :isLogin="isLogin"/>
+      <HeaderHeadimg />
 
       <HeaderUpload/>
 
@@ -17,33 +17,20 @@ export default {
     name:"HeaderRight",
     data() {
       return {
-        isLogin: false,
-        userInfo:{
 
-        }
+
+        
       };
     },
-    components:{HeaderHeadimg, HeaderUpload}
-    ,
+
+    components:{HeaderHeadimg, HeaderUpload},
+    methods:{
+    },
     beforeCreate(){
-      const token = window.localStorage.getItem("token");
-      this.$http.get(`/token/${token}`)
-      .then(res=>{
-        let data = res.data.data;
-        console.log(data);
-        this.$http.get(`home/getUserInfoById/${data.id}`)
-        .then(res=>{
-          console.log(res.data.status);
-          if(res.data.status === "success"){
-            this.userInfo = res.data.data; 
-            console.log(this.userInfo);
-            this.isLogin = true;
-          }else{
-            alert(res.data.error);
-          }
-        })
-      })
-    }
+      console.log(this.$store);
+
+    },
+
     
 }
 </script>

@@ -28,10 +28,16 @@
         </div>
     </div>
 
+    <div id="login-second">
+        {{loginSecond}}
+    </div>
+
   </div>
 </template>
 
 <script>
+
+
 export default {
     name:"Login",
     data() {
@@ -40,7 +46,8 @@ export default {
             userInfo:{
                 id:"",
                 password:""
-            }
+            },
+            loginSecond:10
         };
     },
     watch:{
@@ -61,26 +68,42 @@ export default {
     methods:{
         go2Register(){
             this.$router.push("/register");
-            var body = document.getElementById("backgroundImage");
-            body.style.backgroundColor = "#666";
+            // var body = document.getElementById("backgroundImage");
+            // body.style.backgroundColor = "#666";
         },
         login(){
             this.$http.get(`/login/${this.userInfo.id}/${this.userInfo.password}`)
             .then(res=>{
-                let isError = res.data.status;
-                console.log(isError);
-                if(isError === "error"){
-                    alert(res.data.error);
-                }else{
-                    let status = res.data.data.status;
-                    if(status === "password error"){
-                        alert("密码错误");
+
+                if(res.data.status === "success"){
+                    let data = res.data.data;
+                    if(data.status === "password error"){
+                        alert("password error");
                         return;
                     }
-                    let token = res.data.data.token;
-                    console.log(token);
-                    window.localStorage.setItem("token", token);
-                    this.$router.push("/home");
+                    let token = data.token;
+
+                    this.$http.get(`/login/get/userInfo/byId/${this.userInfo.id}`)
+                    .then(res=>{
+                        console.log(res);
+                        if(res.data.status !== "success"){
+                            alert(res.data.error)
+                            return;
+                        }
+
+                        let userInfo = res.data.data;
+
+                        this.$store.commit("updateUserInfo", userInfo);
+                        this.$store.commit("login")
+                        console.log(this.$store);
+
+                        this.$router.push("/home")
+
+                    })
+
+                    window.localStorage.setItem("token", token)
+                }else{
+                    alert(res.data.error);
                 }
             })
         }

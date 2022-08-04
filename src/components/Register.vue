@@ -184,7 +184,7 @@ export default {
                     if(res.data.status === "success"){
                         this.registerButton.isRegisterSuccess = true;
                         this.registerButton.registerButtonText = "注 册"
-                        // console.log(res);
+                        console.log(res);
                         let id = res.data.data.id;
                         this.userInfo.id = id;
                         this.registerSuccessDiv.isSuccess = true;

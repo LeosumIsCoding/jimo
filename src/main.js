@@ -3,7 +3,7 @@ import axios from 'axios'
 
 import App from './App'
 import router from './router'
-import store from './store'
+import store from './store/index.js'
 
 import VueRouter from 'vue-router'
 
@@ -16,11 +16,19 @@ Vue.config.productionTip = false
 
 
 
+
+
+
 new Vue({
   components: { App },
   router,
   store,
-  render:h=>h(App)
+  render:h=>h(App),
+  beforeCreate(){
+    Vue.prototype.$bus = this;
+  },
+  mounted(){
+  }
 }).$mount('#app')
 
 

@@ -1,42 +1,46 @@
 <template>
 <div>
-    <div v-if="isLogin" id="header-headimg"  style="position:relative">
+    <div v-if="$store.state.isLogin" id="header-headimg"  >
         <div id="header-headimg-sel">
             <div class="header-userinfo">
                 <b>name</b>
             </div>
 
             <div class="header-headimg-buttons">
-                <button>退出登录</button>
+                <button @click="quitLogin">退出登录</button>
             </div>
         </div>
         <router-link to="/person" id="headerbar-headimg">
-            <img  :src="'http://localhost:4536/media/photo/'+ headimg" alt="">
+            <img  :src="'http://localhost:4536/media/photo/'+ $store.state.userInfo.headimg" alt="">
         </router-link>
-        
 
     </div>
 
     <div v-else>
-        登录
+        <router-link to="/person" >
+            登录
+        </router-link>
     </div>
 </div>
 </template>
 
 <script scoped>
+
+
+
 export default {
     name:"HeaderHeadimg",
-
-    props:{
-        headimg:{
-            type:String,
-            default:"defaultHeadimg.png"
-        },
-        isLogin:{
-            type:Boolean,
-            default:false
+    methods:{
+        quitLogin(){
+            window.localStorage.removeItem("token");
+            this.$parent.isLogin = false
+            location.reload();
         }
-    }
+    },
+    computed:{
+
+    },
+
 }
 </script>
 

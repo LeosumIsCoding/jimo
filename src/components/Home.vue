@@ -13,8 +13,13 @@ export default {
 
 
     beforeMount(){
-      console.log(this.$route);
-    }
+      // location.reload()
+      console.log("123");
+
+      console.log("1223");
+    },
+
+
     
 }
 </script>
