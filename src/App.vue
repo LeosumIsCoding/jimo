@@ -1,6 +1,6 @@
 <template>
-  <div  id="app">
-    <HeaderBar/>
+  <div id="app">
+    <HeaderBar />
 
     <div id="main">
       <router-view />
@@ -10,55 +10,54 @@
 
 <script>
 // import Home from "./components/Home.vue"
-import HeaderBar from "./components/HeaderBar.vue"
+import HeaderBar from "./components/HeaderBar.vue";
 
 export default {
-  name: 'App',
-  components: { HeaderBar
-  },
-  beforeCreate(){
+  name: "App",
+  components: { HeaderBar },
+  beforeCreate() {
+    let token = window.localStorage.getItem("token");
+    // console.log(token);
+    this.$store.dispatch("updateUserInfo", token);
+    // console.log(this.$store);
 
-    
+    this.$http.get("/exception/nullpointer").then((res) => {
+      console.log(res);
+    });
   },
-  mounted(){
-
-  },
-  methods:{
-
-  },
-
-}
+  mounted() {},
+  methods: {},
+};
 </script>
 
 <style>
-body{
+body {
   margin: 0;
   background-color: rgb(55, 55, 55);
   color: aliceblue;
   padding: 0;
   height: 100%;
 }
-#main{
+#main {
   padding-top: 60px;
 }
-#app{
+#app {
   margin-left: 50%;
   transform: translateX(-50%);
-  
+
   position: relative;
   /* background-color: aqua; */
-
 }
 
-@media screen and (min-width:1080px) {
-  #app{
+@media screen and (min-width: 1080px) {
+  #app {
     width: 1100px;
     /* background-color: aqua; */
   }
 }
 
-@media screen and (max-width:1080px) {
-  #app{
+@media screen and (max-width: 1080px) {
+  #app {
     width: 100%;
     /* background-color: aquamarine; */
   }

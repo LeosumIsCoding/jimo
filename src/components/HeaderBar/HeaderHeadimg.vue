@@ -3,7 +3,7 @@
     <div v-if="$store.state.isLogin" id="header-headimg"  >
         <div id="header-headimg-sel">
             <div class="header-userinfo">
-                <b>name</b>
+                <b>{{$store.state.userInfo.nickname}}</b>
             </div>
 
             <div class="header-headimg-buttons">
@@ -33,8 +33,7 @@ export default {
     methods:{
         quitLogin(){
             window.localStorage.removeItem("token");
-            this.$parent.isLogin = false
-            location.reload();
+            this.$store.commit("logout")
         }
     },
     computed:{
@@ -80,8 +79,8 @@ export default {
     top: 50px;
     left: -100px;
     border-radius: 10px;
-    /* visibility:hidden; */
-    /* opacity: 0.00; */
+    visibility:hidden;
+    opacity: 0.00;
     background-color: aliceblue;
     transition-duration: 0.2s;
     display: flex;

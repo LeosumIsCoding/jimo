@@ -26,15 +26,38 @@ const mutations = {
   },
   login(state){
     state.isLogin = true;
+  },
+  logout(state){
+    state.isLogin = false;
   }
 }
 
 const actions = {
   // context 是复制的一份store
   async updateUserInfo(context, token){
-    axios.get(`/token/${token}`)
+    // console.log(token);
+    if(token === null){
+      // alert("token jiade")
+      return;
+    }
+
+    axios.get(`/token/isCorrect/${token}`)
     .then(res=>{
-      console.log(res);
+      let status = res.data;
+      if(!status){
+        alert("token 错误")
+        return;
+      }
+
+      axios.get(`/token/userInfo/${token}`)
+      .then(res=>{
+        context.commit("updateUserInfo", res.data.data);
+        context.commit("login");
+      })
+
+    }, err=>{
+      alert("网络异常",err);
+
     })
   }
 }

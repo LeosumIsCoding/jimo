@@ -12,6 +12,12 @@ import Person from "../components/Person/Person.vue"
 import Login from "../components/Login.vue"
 import Register from "../components/Register.vue"
 import UpLoad from "../components/UpLoad.vue"
+import UploadVideo from "../components/Upload/UploadVideo.vue"
+import UploadMusic from "../components/Upload/UploadMusic.vue"
+import UploadPainting from "../components/Upload/UploadPainting.vue"
+import UploadNovel from "../components/Upload/UploadNovel.vue"
+
+// console.log(UploadNovel);
 
 
 const router =  new Router({
@@ -59,7 +65,20 @@ const router =  new Router({
         component:UpLoad,
         meta:{
           requireAuth:true
-        }
+        },
+        children:[{
+          path:"/upload/video",
+          component:UploadVideo
+        },{
+          path:"/upload/music",
+          component:UploadMusic
+        },{
+          path:"/upload/painting",
+          component:UploadPainting
+        },{
+          path:"/upload/novel",
+          component:UploadNovel
+        }]
       }
     ]
 })
